@@ -2,13 +2,12 @@
 clear
 clc
 %% Parameters
-AP_ID=20;
-STA_ID=17;
-bool_init=true;
+AP_IP='192.168.4.2';
+STA_IP='192.168.4.3';
+bool_init=false;
 %% Define RouterConnectionPair
-RouterConnection=RouterConnectionPair(AP_ID, STA_ID);
-ssh_STA=ssh2_config(RouterConnection.IP_struct(RouterConnection.STA_ID), 'root', 'imdea');
-ssh_AP=ssh2_config(RouterConnection.IP_struct(RouterConnection.AP_ID), 'root', 'imdea');
+ssh_STA=ssh2_config(STA_IP, 'root', '12345');
+ssh_AP=ssh2_config(AP_IP, 'root', '12345');
 %% Initialization
 if bool_init
     [ssh_AP, ~]=ssh2_command(ssh_AP, 'bash /joanscripts/initialization');
